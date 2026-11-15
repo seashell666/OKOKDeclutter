@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+def keystorePath = System.getenv('OKOKDECLUTTER_KEYSTORE')
+def releaseKeystoreFile = keystorePath ? file(keystorePath) : null
+def releaseStorePassword = System.getenv('OKOKDECLUTTER_STORE_PASSWORD')
+def releaseKeyAlias = System.getenv('OKOKDECLUTTER_KEY_ALIAS')
+def releaseKeyPassword = System.getenv('OKOKDECLUTTER_KEY_PASSWORD')
+def hasReleaseSigning = releaseKeystoreFile?.exists() && releaseStorePassword && releaseKeyAlias && releaseKeyPassword
+
+android {
+    namespace 'io.github.seashell666.okokdeclutter'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'io.github.seashell666.okokdeclutter'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '1.0.0'
+        resourceConfigurations += ['zh', 'en']
+    }
+
+    signingConfigs {
+        release {
+            if (hasReleaseSigning) {
+                storeFile releaseKeystoreFile
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            if (hasReleaseSigning) signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    lint {
+        abortOnError true
+        checkReleaseBuilds true
+    }
+}
+
+dependencies {
+    compileOnly 'io.github.libxposed:api:102.0.0'
+    testImplementation 'junit:junit:4.13.2'
+}
