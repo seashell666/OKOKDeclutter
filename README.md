@@ -75,7 +75,7 @@ Release 附带的完整源码 ZIP 也包含 Gradle Wrapper；使用压缩包构�
 
 ## 发布与 Vector 收录
 
-源码仓库的 Release 使用标签 **`1-1.0.0`**、标题 **`1.0.0`**，并附带签名 APK。收录步骤和机器人要求见 [docs/VECTOR_SUBMISSION.md](docs/VECTOR_SUBMISSION.md)。
+源码仓库 Release 使用标签 **`1-1.0.0`**、标题 **`1.0.0`**，并附带签名 APK。官方收录 issue [#2600](https://github.com/Xposed-Modules-Repo/submission/issues/2600) 已由 `XposedBot` 标记为 `approved`，官方模块仓库位于 <https://github.com/Xposed-Modules-Repo/io.github.seashell666.okokdeclutter>。机器人通过后，应用和网站列表可能需要最多 3 个工作日完成展示同步；完整收录记录见 [docs/VECTOR_SUBMISSION.md](docs/VECTOR_SUBMISSION.md)。
 
 ## 免责声明
 
